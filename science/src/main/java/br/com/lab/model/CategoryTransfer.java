@@ -1,9 +1,11 @@
 package br.com.lab.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class Category {
+@Builder
+public class CategoryTransfer {
 	
 	private Long id;
 	private String name;
