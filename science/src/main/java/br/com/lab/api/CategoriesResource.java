@@ -33,5 +33,5 @@ public class CategoriesResource {
 	@PostMapping
 	public CategoryTransfer addCategory(@RequestBody CategoryTransfer categoryTransfer) {
 		return categoryService.persistCategory(categoryTransfer);
-	}	
+	}
 }

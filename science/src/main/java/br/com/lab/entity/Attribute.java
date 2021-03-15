@@ -1,25 +1,24 @@
 package br.com.lab.entity;
 
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+import br.com.lab.constant.AttributeType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+public class Attribute {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +26,12 @@ public class Category {
 
 	private String name;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="category", cascade = CascadeType.ALL)
-	private List<Attribute> attributes;
+	private Boolean nullable;
+
+	private AttributeType type;
+
+    @ManyToOne
+    @JoinColumn(name="category_id")
+	private Category category;
 
 }

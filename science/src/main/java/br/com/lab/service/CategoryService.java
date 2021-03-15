@@ -16,36 +16,25 @@ import br.com.lab.repository.CategoryRepository;
 public class CategoryService {
 
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private CategoryRepository repository;
+	
+	@Autowired
+	private CategoryTransformer transformer;
 
 	public CategoryTransfer findById(Long id) {
-		Optional<Category> maybeCategory = categoryRepository.findById(id);
-			Category category = maybeCategory.orElse(null);
-			return transformFromEntity(category);
+		Optional<Category> maybeCategory = repository.findById(id);
+		Category category = maybeCategory.orElse(null);
+		return transformer.transformCategoryFromEntity(category);
 	}
 
 	public CategoryTransfer persistCategory(CategoryTransfer categoryTransfer) {
-		Category category = transformFromTransfer(categoryTransfer);
-		return transformFromEntity( categoryRepository.save(category));
-	}
-
-	private Category transformFromTransfer(CategoryTransfer categoryTransfer) {
-		Category category = new Category();
-		category.setId(categoryTransfer.getId());
-		category.setName(categoryTransfer.getName());
-		return category;
-	}
-
-	private CategoryTransfer transformFromEntity(Category category) {
-		if (category == null) {
-			return null;
-		}
-		return CategoryTransfer.builder().id(category.getId()).name(category.getName()).build();
+		Category category = transformer.transformCategoryFromTransfer(categoryTransfer);
+		return transformer.transformCategoryFromEntity(repository.save(category));
 	}
 
 	public List<CategoryTransfer> findAll() {
-		return StreamSupport.stream(categoryRepository.findAll().spliterator(), false)
-				.map(category -> CategoryTransfer.builder().id(category.getId()).name(category.getName()).build())
+		return StreamSupport.stream(repository.findAll().spliterator(), false)
+				.map(category -> transformer.transformCategoryFromEntity(category))
 				.collect(Collectors.toList());
 	}
 }
