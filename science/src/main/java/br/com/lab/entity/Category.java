@@ -1,7 +1,6 @@
 package br.com.lab.entity;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
