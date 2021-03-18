@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.lab.entity.Attribute;
 import br.com.lab.entity.Item;
@@ -25,6 +26,7 @@ public class ItemService {
 	@Autowired
 	private AttributeRepository attributeRepository;
 
+	@Transactional
 	public ItemTransfer persistItem(ItemTransfer itemTransfer) {
 		Item item = transformer.transformItemFromTransfer(itemTransfer);
 
@@ -38,6 +40,7 @@ public class ItemService {
 		return transformer.transformItemFromEntity(repository.save(item));
 	}
 
+	@Transactional(readOnly = true)
 	public List<ItemTransfer> getAllItemsForCategory(Long categoryId) {
 		List<Item> items = repository.getItemsByCategoryId(categoryId);
 		return transformer.transformItemsFromEntity(items);

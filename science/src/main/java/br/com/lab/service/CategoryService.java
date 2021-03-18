@@ -7,6 +7,7 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.lab.entity.Category;
 import br.com.lab.model.CategoryTransfer;
@@ -17,21 +18,24 @@ public class CategoryService {
 
 	@Autowired
 	private CategoryRepository repository;
-	
+
 	@Autowired
 	private Transformer transformer;
 
+	@Transactional(readOnly = true)
 	public CategoryTransfer findById(Long id) {
 		Optional<Category> maybeCategory = repository.findById(id);
 		Category category = maybeCategory.orElse(null);
 		return transformer.transformCategoryFromEntity(category);
 	}
 
+	@Transactional
 	public CategoryTransfer persistCategory(CategoryTransfer categoryTransfer) {
 		Category category = transformer.transformCategoryFromTransfer(categoryTransfer);
 		return transformer.transformCategoryFromEntity(repository.save(category));
 	}
 
+	@Transactional(readOnly = true)
 	public List<CategoryTransfer> findAll() {
 		return StreamSupport.stream(repository.findAll().spliterator(), false)
 				.map(category -> transformer.transformCategoryFromEntity(category))
