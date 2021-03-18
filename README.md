@@ -39,7 +39,7 @@ Every Item to be added to the application needs to have a type. This can be one 
     "DATETIME"
 ```
 
-This allows the application the flexible. The data type for the items can also be extended just following the existing patterns.
+This allows the application flexibility. The data type for the items can also be extended just following the existing patterns.
 
 So, one concrete example of data would be:
 
