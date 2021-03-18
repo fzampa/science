@@ -27,7 +27,7 @@ public class CategoryServiceTest {
 	private CategoryRepository categoryRepository;
 
 	@Spy
-	private CategoryTransformer transformer;
+	private Transformer transformer;
 
 	@InjectMocks
 	private CategoryService categoryService;

@@ -15,7 +15,7 @@ import br.com.lab.service.CategoryService;
 
 @RestController
 @RequestMapping(value="/categories")
-public class CategoriesResource {
+public class CategoryResource {
 
 	@Autowired
 	private CategoryService categoryService;

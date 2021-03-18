@@ -9,3 +9,8 @@ databaseChangeLog:
     author: felipe
 - include:
     file: /db/changelog/migrations/002.sql
+- changeset:
+    id: 3
+    author: felipe
+- include:
+    file: /db/changelog/migrations/003.sql

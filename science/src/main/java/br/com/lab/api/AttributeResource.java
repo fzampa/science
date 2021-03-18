@@ -13,7 +13,7 @@ import br.com.lab.model.AttributeTransfer;
 
 @RestController
 @RequestMapping(value="/attributes")
-public class AttributesResource {
+public class AttributeResource {
 	
 	@GetMapping("/types")
 	public List<AttributeType> getAttributeTypes(){

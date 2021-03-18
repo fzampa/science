@@ -19,7 +19,7 @@ public class CategoryService {
 	private CategoryRepository repository;
 	
 	@Autowired
-	private CategoryTransformer transformer;
+	private Transformer transformer;
 
 	public CategoryTransfer findById(Long id) {
 		Optional<Category> maybeCategory = repository.findById(id);

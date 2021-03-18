@@ -23,8 +23,8 @@ import br.com.lab.model.CategoryTransfer;
 import br.com.lab.service.CategoryService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CategoriesResource.class)
-class CategoriesResourceTest {
+@WebMvcTest(CategoryResource.class)
+class CategoryResourceTest {
 
     @Autowired
     private MockMvc mvc;

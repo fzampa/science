@@ -13,14 +13,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import br.com.lab.constant.AttributeType;
 import br.com.lab.entity.Attribute;
 import br.com.lab.entity.Category;
+import br.com.lab.entity.Item;
 import br.com.lab.model.AttributeTransfer;
 import br.com.lab.model.CategoryTransfer;
+import br.com.lab.model.ItemTransfer;
 
 @ExtendWith(MockitoExtension.class)
-public class CategoryTransformerTest {
+public class TransformerTest {
 
 	@InjectMocks
-	private CategoryTransformer transformer;
+	private Transformer transformer;
 
 	@Test
 	public void shouldTransformAllDataFromCategoryEntityToTransfer() {
@@ -93,6 +95,25 @@ public class CategoryTransformerTest {
 		assertThat(categoryTransfer.getId()).isEqualTo(3L);
 		assertThat(categoryTransfer.getName()).isEqualTo("CategoryTransfer");
 	}
+	
+	@Test
+	void shouldTransformItemTransferToItem() {
+		ItemTransfer itemTransfer = ItemTransfer.builder().
+		attribute(getTextAttribute()).
+		value("TEXT").build();
+
+		Item item = transformer.transformItemFromTransfer(itemTransfer);
+
+		assertThat(item).isNotNull();
+		assertThat(item.getItemValue().getValue()).isEqualTo("TEXT" );
+		assertThat(item.getAttribute().getType()).isEqualTo(AttributeType.TEXT);
+	}
+
+	private AttributeTransfer getTextAttribute() {
+		return AttributeTransfer.builder().id(1L).name("txtAttr").nullable(true)
+				.type(AttributeType.TEXT).build();
+	}
+
 
 	private Category getCategoryEntity() {
 		Category category = new Category();
