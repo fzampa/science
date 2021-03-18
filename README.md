@@ -61,7 +61,7 @@ And finally the items added would be represented as:
 | 1-Symptom| Fever | boolean | false |
 | 1-Symptom| Cough | boolean | true |
 | 1-Symptom| Feeling desc. | text | Get tired going upstairs |
-
+| 1-Symptom| Feeling desc. | text | Back pain when cough |
 
 ## Configuring the execution environment
 
