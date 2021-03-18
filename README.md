@@ -99,7 +99,7 @@ mysql> show tables;
 11 rows in set (0.01 sec)
 ```
 
-## Running the application and sample data
+## Executing the application and sample data
 
 The following endpoints and example of request data are provided:
 
